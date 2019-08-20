@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title>Escuelas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <ion-card-header>
+          Ingresar escuela de futbol
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+              <ion-input required type="text" placeholder="Nombre" [(ngModel)]="sucu.nombre"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-input required type="text" placeholder="Dirección" [(ngModel)]="sucu.direccion"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-input required type="text" placeholder="Telefono" [(ngModel)]="sucu.telefono"></ion-input>
+          </ion-item>
+        
+          <ion-item>
+              <ion-button color="tertiary" expand="block" (click)="add()">Guardar</ion-button>
+
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-list>
+          <ion-card *ngFor="let s of sucursales">
+            <ion-card-header>
+              <ion-card-subtitle>{{s.nombre}} </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <p>Dirección: {{s.direccion}}</p>
+              <p>Telefono: {{s.telefono}}</p>
+             
+              <ion-button color="primary" (click)="edit(s.id,s.nombre,s.direccion,s.telefono)"><ion-icon name="build"></ion-icon></ion-button>
+              <ion-button color="danger" (click)="remove(s.id)"><ion-icon name="trash"></ion-icon></ion-button>
+            </ion-card-content>
+          </ion-card>
+      </ion-list>
+
+      <ion-button color="tertiary" expand="full" (click)="logOut()">Cerrar Sesión</ion-button>
+
+</ion-content>

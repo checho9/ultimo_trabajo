@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title>Ligas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <ion-card-header>
+          Ingresar Liga
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+              <ion-input required type="text" placeholder="Participantes" [(ngModel)]="esta.participantes"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-input required type="text" placeholder="%" [(ngModel)]="esta.porcentaje"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-input required type="text" placeholder="Nombre de liga" [(ngModel)]="esta.proyecto"></ion-input>
+          </ion-item>
+        
+          <ion-item>
+              <ion-button color="tertiary" expand="block" (click)="add()">Guardar</ion-button>
+
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+
+
+
+      <ion-list>
+          <ion-card *ngFor="let s of estadias">
+            <ion-card-header>
+              <ion-card-subtitle>{{s.proyecto}} </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <p>Porcentaje de niños: {{s.porcentaje}}</p>
+              <p>Participantes: {{s.participantes}}</p>
+             
+              <ion-button color="primary" (click)="edit(s.id,s.proyecto,s.porcentaje,s.participantes)"><ion-icon name="build"></ion-icon></ion-button>
+              <ion-button color="danger" (click)="remove(s.id)"><ion-icon name= "trash"></ion-icon></ion-button>
+            </ion-card-content>
+          </ion-card>
+      </ion-list>
+
+      <ion-button color="tertiary" expand="full" (click)="logOut()">Cerrar Sesión</ion-button>
+
+</ion-content>

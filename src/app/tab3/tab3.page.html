@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title>
+      Jerseys
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-card>
+        <ion-card-header>
+          Ingresar pedido
+        </ion-card-header>
+        <ion-card-content>
+         
+          <ion-item>
+              <ion-input required type="number" placeholder="Cantidad" [(ngModel)]="productos.cantidad"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-input required type="text" placeholder="Nombre" [(ngModel)]="productos.nombre"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-input required type="number" placeholder="Precio" [(ngModel)]="productos.precio"></ion-input>
+          </ion-item>
+         
+          <ion-item>
+              <ion-label>Tipo:</ion-label>
+              <ion-select [(ngModel)]="productos.tipo" placeholder="Seleccionar uno">
+                  <ion-select-option value="Hombre">Hombre</ion-select-option>
+                  <ion-select-option value="Mujer">Mujer</ion-select-option>
+                  <ion-select-option value="Unisex">Unisex</ion-select-option>
+                  
+
+                </ion-select>
+          </ion-item>
+          <ion-item>
+              <ion-button color="tertiary" expand="block" (click)="add()">Guardar</ion-button>
+
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+
+
+      <ion-list>
+          <ion-card *ngFor="let pp of productote">
+            <ion-card-header>
+              <ion-card-subtitle>{{pp.nombre}}</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <p>Cantidad: {{pp.cantidad}}</p>
+              <p>Precio: ${{pp.precio}}</p>
+              <p>Tipo: {{pp.tipo}}</p>
+              <ion-button color="primary" (click)="edit(pp.id,pp.nombre,pp.cantidad,pp.precio,pp.tipo)"><ion-icon name="build"></ion-icon></ion-button>
+              <ion-button color="danger" (click)="remove(pp.id)"> <ion-icon name="trash"></ion-icon></ion-button>
+            </ion-card-content>
+          </ion-card>
+      </ion-list>
+    
+     
+        <ion-button color="tertiary" expand="full" (click)="logOut()">Cerrar Sesión</ion-button>
+
+</ion-content>

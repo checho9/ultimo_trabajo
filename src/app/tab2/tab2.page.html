@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title>
+     Utileria
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-card>
+        <ion-card-header>
+          Ingresar pendido
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+              <ion-label>Estatus:</ion-label>
+              <ion-select [(ngModel)]="pendie.estado" placeholder="Seleccionar uno">
+                  <ion-select-option value="pendiente">Pendiente</ion-select-option>
+                  <ion-select-option value="activo">Activo</ion-select-option>
+                  <ion-select-option value="resuelto">Resuelto</ion-select-option>
+                </ion-select>
+          </ion-item>
+          <ion-item>
+              <ion-input required type="text" placeholder="Pedido" [(ngModel)]="pendie.pedido"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-input required type="text" placeholder="Lugar" [(ngModel)]="pendie.ubicacion"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-button color="tertiary" expand="block" (click)="add()">Guardar</ion-button>
+
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+
+
+     
+          <ion-list>
+      <ion-card *ngFor="let pp of pendientes">
+        <ion-card-header>
+          <ion-card-subtitle>{{pp.estado}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Pedido: {{pp.pedido}}</p>
+          <p>Lugar: {{pp.ubicacion}}</p>
+          
+          <ion-button color="primary" (click)="edit(pp.id,pp.estado,pp.pedido,pp.ubicacion)"><ion-icon name="build"></ion-icon></ion-button>
+          <ion-button color="success" (click)="remove(pp.id)">Terminado <ion-icon name="trash"></ion-icon></ion-button>
+        </ion-card-content>
+      </ion-card>
+  </ion-list>
+
+  <ion-button  color="tertiary" expand="full" (click)="logOut()">Cerrar Sesión</ion-button>
+
+
+</ion-content>
