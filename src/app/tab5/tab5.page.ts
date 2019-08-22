@@ -2,39 +2,38 @@ import { Component, OnInit } from '@angular/core';
 import { estadia } from '../models/estadias.interface';
 import { EstaService } from '../seservices/esta.service';
 import { AlertController } from '@ionic/angular';
-import { NavController } from'@ionic/angular';
-@Component({
+import { NavController } from '@ionic/angular';
+@ Component({
   selector: 'app-tab5',
   templateUrl: './tab5.page.html',
   styleUrls: ['./tab5.page.scss'],
 })
 export class Tab5Page implements OnInit {
-  estadias:estadia[];
-  esta:estadia={
-    participantes:'',
-    porcentaje:'',
-    proyecto:''
+  estadias: estadia[];
+  esta: estadia = {
+    participantes: '',
+    porcentaje: '',
+    proyecto: ''
   };
-  dataToSend:estadia={
-    participantes:'',
-    porcentaje:'',
-    proyecto:''
+  dataToSend: estadia = {
+    participantes: '',
+    porcentaje: '',
+    proyecto: ''
   };
-  constructor(private estaServ : EstaService, private alertCtrl:AlertController,public nav: NavController) { }
+  constructor(private estaServ: EstaService, private alertCtrl: AlertController, public nav: NavController) { }
 
   ngOnInit() {
-    this.estaServ.getTodos().subscribe(res=>{
-      console.log('s',res);
+    this.estaServ.getTodos().subscribe(res => {
+      console.log('s', res);
       this.estadias = res;
     });
-  
   }
-  add(){
-    this.estaServ.addUser(this.esta).then(()=>{
+  add() {
+    this.estaServ.addUser(this.esta).then(() => {
 
   });
   }
-  remove(id:string){
+  remove(id: string) {
     this.estaServ.deleteU(id);
   }
   async edit(editValor: string, proy: string, porce: string, parti: string) {
@@ -59,8 +58,7 @@ export class Tab5Page implements OnInit {
         type: 'text',
         placeholder: 'Escriba el correo',
         value: parti
-      
-      }, 
+      },
       ],
       buttons: [
         {
@@ -74,13 +72,12 @@ export class Tab5Page implements OnInit {
           text: 'Aceptar',
           handler: (datos) => {
             this.dataToSend = {
-              proyecto:datos.proyecto,
-              porcentaje:datos.porcentaje,
-              participantes:datos.participantes
+              proyecto: datos.proyecto,
+              porcentaje: datos.porcentaje,
+              participantes: datos.participantes
             };
             console.log (this.dataToSend);
-           this.estaServ.updateU(this.dataToSend,editValor).then(()=>{
-         
+            this. estaServ.updateU(this.dataToSend, editValor).then(() => {
           });
         }
       }
@@ -88,8 +85,7 @@ export class Tab5Page implements OnInit {
     });
     await alertInput.present();
     }
-    logOut(){
-    
+    logOut() {
       this.nav.navigateForward('/');
     }
 }

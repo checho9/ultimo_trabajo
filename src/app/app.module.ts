@@ -14,6 +14,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import * as firebase from 'firebase';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 firebase.initializeApp(environment.firebaseConfig);
 
 
@@ -28,6 +29,7 @@ firebase.initializeApp(environment.firebaseConfig);
     StatusBar,
     SplashScreen,
     AuthService,
+    Geolocation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, OneSignal
   ],
   bootstrap: [AppComponent]
